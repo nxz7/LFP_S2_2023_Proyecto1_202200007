@@ -4,9 +4,8 @@ from tkinter import ttk, filedialog
 import json
 import io
 import sys
-from tok import tok
-from matematicas import matematicas
-from AFD import AFD
+
+from AFD import AFD, imprimir_tokens
 
     
 def Analizar_clicked():
@@ -17,11 +16,10 @@ def Analizar_clicked():
         with open(archivo_abierto, 'r') as json_file:
             json_data = json_file.read()
 
-        automata = AFD()
-        automata.analizar_char(json_data, matematicas('division'))
+        info_analizada = AFD(json_data)
         text_box.delete(1.0, tk.END)
         sys.stdout = io.StringIO()  
-        automata.imprimir_tokens()
+        imprimir_tokens(info_analizada)
         output = sys.stdout.getvalue()  
         sys.stdout = sys.__stdout__  
 
@@ -30,7 +28,37 @@ def Analizar_clicked():
         text_box.insert(tk.END, "selecciona un archivo para analizar primero.\n")
 
 def Errores_clicked():
-    text_box.insert(tk.END, "Examinando errores\n")
+    global archivo_abierto
+
+    if archivo_abierto:
+        with open(archivo_abierto, 'r') as json_file:
+            json_data = json_file.read()
+
+        info_analizada = AFD(json_data)
+        error_inf = []
+        error_contador = 1
+#para que imprima el error en el formato
+        for error in info_analizada[1]:
+            error_item = {
+                "No": error_contador,
+                "descripcion": {
+                    "lexema": error[0],
+                    "tipo": "error lexico",
+                    "columna": error[2],
+                    "fila": error[1]
+                }
+            }
+            error_inf.append(error_item)
+            error_contador += 1
+
+        error_json = {"errores": error_inf}
+
+        with open("errores.json", "w") as json_file:
+            json.dump(error_json, json_file, indent=4)
+
+        text_box.insert(tk.END, "Errores se encuentran en el archivo: 'errores.json'\n")
+    else:
+        text_box.insert(tk.END, "Selecciona un archivo para analizar primero.\n")
 
 def Reporte_clicked():
     text_box.insert(tk.END, "Generando diagramas\n")
@@ -50,7 +78,6 @@ def Archivo_opcion(event):
                 #json_inf = json.load(loaded_json_data)
                 text_box.insert(tk.END, loaded_json_data)
 
-                #automata.analizar_json(json.dumps(json_inf), matematicas('suma'))  
     elif selected_item == "Guardar":
         if archivo_abierto:
             inf_contenido = text_box.get(1.0, tk.END)  
