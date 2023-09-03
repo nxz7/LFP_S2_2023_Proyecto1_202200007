@@ -2,7 +2,7 @@
     "Operaciones": [
         {
             "operacion": "suma",
-            "valor1": 4.5,
+            "valor1": 25,
             "valor2": 5.32
         },
         {
@@ -26,3 +26,4 @@
         }
     ]
 }
+

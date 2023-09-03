@@ -2,7 +2,7 @@
     "Operaciones": [
         {
             "operacion": "suma",
-            "valor1": 25.5,
+            "valor1": 4.5,
             "valor2": 5.32
         },
         {
@@ -10,7 +10,7 @@
             "valor1": 4.5,
             "valor2": [
                 {
-                    "operacion": "potencia",
+                    "operacion": "Multiplicacion",
                     "valor1": 10,
                     "valor2": 3
                 }
@@ -26,3 +26,6 @@
         }
     ]
 }
+
+
+

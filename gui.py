@@ -1,10 +1,34 @@
-import math
+
 import tkinter as tk
 from tkinter import ttk, filedialog
 import json
+import io
+import sys
+from tok import tok
+from matematicas import matematicas
+from AFD import AFD
 
+    
 def Analizar_clicked():
-    text_box.insert(tk.END, "ANALIZAR\n")
+    global archivo_abierto  
+
+    if archivo_abierto:
+
+        with open(archivo_abierto, 'r') as json_file:
+            json_data = json_file.read()
+
+        automata = AFD()
+        automata.analizar_char(json_data, matematicas('division'))
+        text_box.delete(1.0, tk.END)
+        sys.stdout = io.StringIO()  
+        automata.imprimir_tokens()
+        output = sys.stdout.getvalue()  
+        sys.stdout = sys.__stdout__  
+
+        text_box.insert(tk.END, output)
+    else:
+        text_box.insert(tk.END, "selecciona un archivo para analizar primero.\n")
+
 def Errores_clicked():
     text_box.insert(tk.END, "Examinando errores\n")
 
@@ -16,14 +40,17 @@ archivo_abierto = None  #el que esta abierto para luego guardar
 
 #---------------------
 def Archivo_opcion(event):
-    global archivo_abierto
+    global archivo_abierto, loaded_json_data 
     selected_item = combo_box.get()
     if selected_item == "Abrir":
         archivo_abierto = filedialog.askopenfilename(filetypes=[("JSON Files", "*.json")])
         if archivo_abierto:
             with open(archivo_abierto, 'r') as json_file:
-                json_inf = json.load(json_file)
-                text_box.insert(tk.END, json.dumps(json_inf, indent=4))  
+                loaded_json_data=json_file.read()
+                #json_inf = json.load(loaded_json_data)
+                text_box.insert(tk.END, loaded_json_data)
+
+                #automata.analizar_json(json.dumps(json_inf), matematicas('suma'))  
     elif selected_item == "Guardar":
         if archivo_abierto:
             inf_contenido = text_box.get(1.0, tk.END)  
