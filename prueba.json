@@ -2,19 +2,23 @@
     "Operaciones": [
         {
             "operacion": "suma",
-            "valor1": 4.5,
+            "valor1": 10.5,
             "valor2": 5.32
         },
         {
-            "operacion": "resta",
+            "operacion": "suma",
             "valor1": 4.5,
             "valor2": [
                 {
-                    "operacion": "Multiplicacion",
+                    "operacion": "potencia",
                     "valor1": 10,
                     "valor2": 3
                 }
             ]
+        },
+        {
+            "operacion": "raiz",
+            "valor1": 25
         }
     ],
     "configuraciones": [
@@ -26,8 +30,3 @@
         }
     ]
 }
-
-
-
-
-

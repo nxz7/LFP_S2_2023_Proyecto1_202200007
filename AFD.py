@@ -3,12 +3,19 @@ import json
 def AFD(st_info):
     tokens = []             
     errores = []
-    columna = 0              
-    fila = 0                                               
+    columna = 1              
+    fila = 1                                               
     paso = ""               
     bolita_estado = 0
 
-    reservadas = ["suma", "resta", "multiplicacion", "division", "potencia", "raiz", "inverso", "seno", "coseno","tangente", "mod", "operaciones", "operacion", "valor1", "valor2", "valor3", "valor4", "valor5","valor6", "valor7", "valor8", "valor9", "valor10", "configuraciones", "texto", "fondo", "fuente","forma", "circulo","cuadrado", "cubo","negro", "azul", "marrón", "gris", "verde", "naranja", "rosa", "purpura","morado", "rojo", "blanco" ,"amarillo"]
+
+    
+    operador = ["suma", "resta", "multiplicacion", "division", "potencia", "raiz", "inverso", "seno", "coseno","tangente", "mod"]
+    
+    valor = ["valor1", "valor2", "valor3", "valor4", "valor5", "valor6", "valor7"]
+    
+    reservadas = ["operaciones", "operacion", "configuraciones", "texto", "fondo", "fuente","forma"]
+
     i = 0 #para poder ver cada item   
     while i < len(st_info):
 
@@ -19,27 +26,27 @@ def AFD(st_info):
                 columna += 1
 
             elif st_info[i] == "{":
-                tokens.append([st_info[i], "llave abrir", fila, columna])
+                tokens.append([st_info[i], "llave de abrir", fila, columna])
                 paso = ""
                 columna += 1
 
             elif st_info[i] == "}":
-                tokens.append([st_info[i], "llave de cierre", fila, columna])
+                tokens.append([st_info[i], "llave para cerrar", fila, columna])
                 paso = ""
                 columna += 1
 
             elif st_info[i] == "[":
-                tokens.append([st_info[i], "corchete de abrir", fila, columna])
+                tokens.append([st_info[i], "corchete para abrir", fila, columna])
                 paso = ""
                 columna += 1
 
             elif st_info[i] == "]":
-                tokens.append([st_info[i], "corchete de cierre", fila, columna])
+                tokens.append([st_info[i], "corchete para cerrar", fila, columna])
                 paso = ""
                 columna += 1
 
             elif st_info[i] == ":":
-                tokens.append([st_info[i], "punto y coma", fila, columna])
+                tokens.append([st_info[i], "dos puntos :", fila, columna])
                 paso = ""
                 columna += 1
 
@@ -85,7 +92,7 @@ def AFD(st_info):
                 columna += 1
 
             else:
-                tokens.append([paso, "numero", fila, columna])
+                tokens.append([paso, "Numero", fila, columna])
                 paso = ""       
                 columna += 1
                 i -= 1          
@@ -109,7 +116,7 @@ def AFD(st_info):
                 columna += 1
         
             else:
-                tokens.append([paso, "numero", fila, columna])
+                tokens.append([paso, "Numero", fila, columna])
                 paso = ""
                 columna += 1
                 i -= 1
@@ -120,10 +127,15 @@ def AFD(st_info):
                 columna += 1
 
             elif st_info[i] == '"':
-                if paso.lower() in reservadas:  
-                    tokens.append([paso, "reservada", fila, columna])
+
+                if paso in reservadas:
+                    tokens.append([paso, "Reservada", fila, columna])
+                elif paso in operador:
+                    tokens.append([paso, "Operador", fila, columna])
+                elif paso in valor:
+                    tokens.append([paso, "Valor", fila, columna])
                 else:
-                    errores.append([paso, fila, columna])  
+                    tokens.append([paso, "Cadena", fila, columna])  
                 paso = ""
                 columna += 1
                 bolita_estado = 0
@@ -147,42 +159,42 @@ def AFD(st_info):
 
 def imprimir_tokens(salida):
     print("TOKENS")
-    print('*' * 41)
-    print("{:<10} {:<17} {:<7} {:<11}".format("Lexema ", " Tipo", " Fila", "Columna"))
-    print('*' * 41)
+    print('*' * 53)
+    print("{:<11} {:<19} {:<10} {:<15}".format("Lexema ", " Tipo", " Fila", "Columna"))
+    print('*' * 53)
     for token in salida[0]:
-        print("{:<10} {:<15} {:<7} {:<11}".format(token[0], token[1], token[2], token[3]))
+        print("{:<11} {:<19} {:<10} {:<15}".format(token[0], token[1], token[2], token[3]))
     
-
 #-------------------pruebas
-#entrada= open('prueba.json', 'r').read()
 
-#salida = AFD(entrada)
+entrada= open('prueba.json', 'r').read()
 
-#imprimir_tokens(salida)
+salida = AFD(entrada)
+
+imprimir_tokens(salida)
 
 
-#error_data = []
-#error_number = 1
+error_data = []
+error_number = 1
 
-#for error in salida[1]:
-    #error_item = {
-        #"No": error_number,
-        #"descripcion": {
-            #"lexema": error[0],
-            #"tipo": "error lexico",
-            #"columna": error[2],
-            #"fila": error[1]
-        #}
-    #}
-    #error_data.append(error_item)
-    #error_number += 1
+for error in salida[1]:
+    error_item = {
+        "No": error_number,
+        "descripcion": {
+            "lexema": error[0],
+            "tipo": "error lexico",
+            "columna": error[2],
+            "fila": error[1]
+        }
+    }
+    error_data.append(error_item)
+    error_number += 1
 
-#error_json = {"errores": error_data}
+error_json = {"errores": error_data}
 
-#with open("errores.json", "w") as json_file:
-    #json.dump(error_json, json_file, indent=4)
+with open("errores.json", "w") as json_file:
+    json.dump(error_json, json_file, indent=4)
 
-#print("ERRORES")
-#for errores in salida[1]:
-    #print(errores)
+print("ERRORES")
+for errores in salida[1]:
+    print(errores)

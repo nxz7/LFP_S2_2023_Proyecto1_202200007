@@ -55,7 +55,7 @@ def Errores_clicked():
 
         with open("errores.json", "w") as json_file:
             json.dump(error_json, json_file, indent=4)
-
+        text_box.insert(tk.END, "**************************************************'\n")
         text_box.insert(tk.END, "Errores se encuentran en el archivo: 'errores.json'\n")
     else:
         text_box.insert(tk.END, "Selecciona un archivo para analizar primero.\n")
