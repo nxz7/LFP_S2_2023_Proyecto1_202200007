@@ -4,7 +4,7 @@ from tkinter import ttk, filedialog
 import json
 import io
 import sys
-
+from matematicas import parser
 from AFD import AFD, imprimir_tokens
 
     
@@ -29,7 +29,7 @@ def Analizar_clicked():
 
 def Errores_clicked():
     global archivo_abierto
-
+    text_box.delete(1.0, tk.END)
     if archivo_abierto:
         with open(archivo_abierto, 'r') as json_file:
             json_data = json_file.read()
@@ -61,7 +61,26 @@ def Errores_clicked():
         text_box.insert(tk.END, "Selecciona un archivo para analizar primero.\n")
 
 def Reporte_clicked():
-    text_box.insert(tk.END, "Generando diagramas\n")
+    text_box.insert(tk.END, "Realizando operaciones --------- Generando diagramas\n")
+    global archivo_abierto  
+
+    if archivo_abierto:
+
+        with open(archivo_abierto, 'r') as json_file:
+            json_data = json_file.read()
+#    entrada= open('prueba.json', 'r').read()
+        #parser(json_data)
+        #info_analizada = AFD(json_data)
+        text_box.delete(1.0, tk.END)
+        sys.stdout = io.StringIO()
+        parser(json_data)  
+        #imprimir_tokens(info_analizada)
+        output = sys.stdout.getvalue()  
+        sys.stdout = sys.__stdout__  
+
+        text_box.insert(tk.END, output)
+    else:
+        text_box.insert(tk.END, "selecciona un archivo para analizar primero.\n")
 
 archivo_abierto = None  #el que esta abierto para luego guardar
 #---------------------

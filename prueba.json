@@ -7,7 +7,7 @@
         },
         {
             "operacion": "suma",
-            "valor1": 4.5,
+            "valor1": 50,
             "valor2": [
                 {
                     "operacion": "potencia",
@@ -15,10 +15,6 @@
                     "valor2": 3
                 }
             ]
-        },
-        {
-            "operacion": "raiz",
-            "valor1": 25
         }
     ],
     "configuraciones": [
@@ -30,3 +26,4 @@
         }
     ]
 }
+

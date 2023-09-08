@@ -1,25 +1,41 @@
 import math
+
+import graphviz
 from AFD import AFD
 
 tokensL = []                 
 errores = []
-                
+dot_file_name = "grafo.dot"                
 
 def parser (st_info):
-
+    global dot_file_name
     global tokensL
     
     #Genera los tokens
     respuesta = AFD(st_info)
-    print("error")
+    print("OPERACIONES REALIZADAS")
     tokensL = respuesta[0]               
+
 
 #PILA / POP - > se le da vuelta
     tokensL.reverse()
 
-
     analisis_L()
+    with open(dot_file_name, "a") as dot_file:
+        dot_file.write(f'\n    }}')
 
+    graph = graphviz.Source.from_file(dot_file_name)
+
+    output_file_name = "grafo"
+    graph.format = "png"
+    graph.render(output_file_name, view=False)
+    with open(dot_file_name, "r") as dot_file:
+        lines = dot_file.readlines()
+
+    with open(dot_file_name, "w") as dot_file:
+        dot_file.write(lines[0])  
+
+    print(f"El grafo esta listo bajo el nombre: '{output_file_name}'.")
 
 def analisis_L():
 
@@ -32,7 +48,6 @@ def analisis_L():
         
         print("Operaciones:")
         operaciones()
-
 
         vt = tokensL.pop()                   
         if vt[1] != "coma":           
@@ -48,11 +63,10 @@ def analisis_L():
             errores.append([vt[0], "->" + vt[1], vt[2], vt[4]])
             return 
         
-        print("-------------------listo!")
+        print("****************************¡¡listo!! ****************************")
         
     except Exception as e:
         print("Error: " + str(e))
-
 
 def operaciones():
 
@@ -78,7 +92,6 @@ def operaciones():
 
         operacion()
 
-
         vt = tokensL.pop()                   
         if vt[1] != "corchete para cerrar":           
             errores.append([vt[0], "->" + vt[1], vt[2], vt[4]])
@@ -87,7 +100,6 @@ def operaciones():
     except Exception as e:
         print("operaciones")
         print("Error: " + str(e))
-
 
 def operacion():
 
@@ -106,7 +118,6 @@ def operacion():
     except Exception as e:
         print("operacion")
         print("Error: " + str(e))
-
 
 def exp_a_operar():
     operador = ""
@@ -157,18 +168,42 @@ def exp_a_operar():
             for numero in valores:
                 resultado += numero
             print(valores[0], "+", valores[1], "=", resultado, operador)
+            with open(dot_file_name, "a") as dot_file:
+
+                dot_file.write(f'\n    {resultado} [label="{resultado}- Suma"]')
+                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                dot_file.write(f'\n    {resultado} -> {valores[1]}')
+            print("grafo creado")
 
         elif operador == "resta":
             resultado = valores[0]
             for numero in valores[1:]:
                 resultado -= numero
             print(valores[0], "-", valores[1], "=", resultado, operador)
+            with open(dot_file_name, "a") as dot_file:
+
+                dot_file.write(f'\n    {resultado} [label="{resultado}- RESTA"]')
+                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                dot_file.write(f'\n    {resultado} -> {valores[1]}')
+            print("grafo creado")
 
         elif operador == "multiplicacion":
             resultado = valores[0]
             for numero in valores[1:]:
                 resultado = numero * resultado
             print(valores[0], "*", valores[1], "=", resultado, operador)
+            with open(dot_file_name, "a") as dot_file:
+
+                dot_file.write(f'\n    {resultado} [label="{resultado}- multiplicacion"]')
+                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                dot_file.write(f'\n    {resultado} -> {valores[1]}')
+            print("grafo creado")
 
         elif operador == "division":
             try:
@@ -177,6 +212,13 @@ def exp_a_operar():
                 else:
                     resultado = valores[0] / valores[1]
                     print(valores[0], "/", valores[1], "=", resultado, operador)
+                    with open(dot_file_name, "a") as dot_file:
+                        dot_file.write(f'\n    {resultado} [label="{resultado}- division"]')
+                        dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                        dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                        dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                        dot_file.write(f'\n    {resultado} -> {valores[1]}')
+                    print("grafo creado")
             except ZeroDivisionError:
                 print("Error: IMPOSIBLE división por cero")
                 resultado = 0
@@ -187,6 +229,14 @@ def exp_a_operar():
             else:
                 resultado = valores[0] ** valores[1]
                 print(valores[0], "^", valores[1], "=", resultado, operador)
+                with open(dot_file_name, "a") as dot_file:
+
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- potencia"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                    dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                    dot_file.write(f'\n    {resultado} -> {valores[1]}')
+                print("grafo creado")
 
         elif operador == "raiz":
             if len(valores) != 1:
@@ -196,6 +246,12 @@ def exp_a_operar():
             else:
                 resultado = math.sqrt(valores[0])
                 print("√", valores[0], "=", resultado, operador)
+                with open(dot_file_name, "a") as dot_file:
+
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- raiz"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                print("grafo creado")
 
         elif operador == "inverso":
             if len(valores) != 1 or valores[0] == 0:
@@ -203,6 +259,12 @@ def exp_a_operar():
             else:
                 resultado = 1 / valores[0]
                 print("1/", valores[0], "=", resultado, operador)
+                with open(dot_file_name, "a") as dot_file:
+
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- inverso"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                print("grafo creado")
 
         elif operador == "seno":
             if len(valores) != 1:
@@ -217,6 +279,12 @@ def exp_a_operar():
             else:
                 resultado = math.cos(valores[0])
                 print("cos(", valores[0], ") =", resultado, operador)
+                with open(dot_file_name, "a") as dot_file:
+
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- seno"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                print("grafo creado")
 
         elif operador == "tangente":
             if len(valores) != 1:
@@ -224,6 +292,12 @@ def exp_a_operar():
             else:
                 resultado = math.tan(valores[0])
                 print("tan(", valores[0], ") =", resultado, operador)
+                with open(dot_file_name, "a") as dot_file:
+
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- tangente"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                print("grafo creado")
 
         elif operador == "mod":
             if len(valores) != 2:
@@ -231,6 +305,14 @@ def exp_a_operar():
             else:
                 resultado = valores[0] % valores[1]
                 print(valores[0], "%", valores[1], "=", resultado, operador)
+                with open(dot_file_name, "a") as dot_file:
+
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- mod"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                    dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                    dot_file.write(f'\n    {resultado} -> {valores[1]}')
+                print("grafo creado")
 
         return resultado
 
@@ -239,14 +321,12 @@ def exp_a_operar():
         print("Error: " + str(e))
         return 0
 
-
 def listanumeros(valores):
 
     try:
 
         numero = valor()
         valores.append(numero)
-
 
         vt = tokensL[-1]
         if vt[1] != "coma":
@@ -261,7 +341,6 @@ def listanumeros(valores):
     except Exception as e:
         print("aca0")
         print("Error: " + str(e))
-
 
 def valor():
 
@@ -311,7 +390,6 @@ def numero():
 
             resultado = float(exp_a_operar())
 
-
             vt = tokensL.pop()                   
             if vt[1] != "corchete para cerrar":           
                 errores.append([vt[0], "->" + vt[1], vt[2], vt[4]])
@@ -355,12 +433,10 @@ def configuraciones():
         #LOS AJUSTES DEL GRAFO
         datos_grafo() 
 
-
         vt = tokensL.pop()                    
         if vt[1] != "llave para cerrar":         
             errores.append([vt[0], "->"+ vt[1], vt[2], vt[4]])
             return 0
-
 
         vt = tokensL.pop()                   
         if vt[1] != "corchete para cerrar":           
@@ -406,7 +482,6 @@ def datos_grafo():
         
         tokensL.pop()        
 
-
         datos_grafo()
 
     except Exception as e:
@@ -414,13 +489,11 @@ def datos_grafo():
 
 
 
-
 #Prueba
-def jj():
-    entrada= open('prueba.json', 'r').read()
-    parser(entrada)
-    print("errores en suma:")
-    print(errores)
+#def jj():
+    #entrada= open('prueba.json', 'r').read()
+    #parser(entrada)
+    #print("errores en suma:")
+    #print(errores)
 
-
-jj()
+#jj()

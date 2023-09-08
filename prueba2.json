@@ -1,17 +1,21 @@
 {
     "Operaciones": [
         {
-            "operacion": "suma",
+            "operacion": "multiplicacion",
             "valor1": 25,
             "valor2": 5.32
+        },
+        {
+            "operacion": "tangente",
+            "valor1": 45
         },
         {
             "operacion": "resta",
             "valor1": 4.5,
             "valor2": [
                 {
-                    "operacion": "potencia",
-                    "valor1": 10,
+                    "operacion": "division",
+                    "valor1": 15,
                     "valor2": 3
                 }
             ]
@@ -26,3 +30,7 @@
         }
     ]
 }
+
+
+
+
