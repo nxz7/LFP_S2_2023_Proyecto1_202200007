@@ -167,34 +167,34 @@ def imprimir_tokens(salida):
     
 #-------------------pruebas
 
-entrada= open('prueba.json', 'r').read()
+#entrada= open('prueba.json', 'r').read()
 
-salida = AFD(entrada)
+#salida = AFD(entrada)
 
-imprimir_tokens(salida)
+#imprimir_tokens(salida)
 
 
-error_data = []
-error_number = 1
+#error_data = []
+#error_number = 1
 
-for error in salida[1]:
-    error_item = {
-        "No": error_number,
-        "descripcion": {
-            "lexema": error[0],
-            "tipo": "error lexico",
-            "columna": error[2],
-            "fila": error[1]
-        }
-    }
-    error_data.append(error_item)
-    error_number += 1
+#for error in salida[1]:
+    #error_item = {
+        #"No": error_number,
+        #"descripcion": {
+            #"lexema": error[0],
+            #"tipo": "error lexico",
+            #"columna": error[2],
+            #"fila": error[1]
+        #}
+    #}
+    #error_data.append(error_item)
+    #error_number += 1
 
-error_json = {"errores": error_data}
+#error_json = {"errores": error_data}
 
-with open("errores.json", "w") as json_file:
-    json.dump(error_json, json_file, indent=4)
+#with open("errores.json", "w") as json_file:
+    #json.dump(error_json, json_file, indent=4)
 
-print("ERRORES")
-for errores in salida[1]:
-    print(errores)
+#print("ERRORES")
+#for errores in salida[1]:
+    #print(errores)

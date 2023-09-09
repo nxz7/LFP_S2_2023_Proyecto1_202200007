@@ -68,13 +68,10 @@ def Reporte_clicked():
 
         with open(archivo_abierto, 'r') as json_file:
             json_data = json_file.read()
-#    entrada= open('prueba.json', 'r').read()
-        #parser(json_data)
-        #info_analizada = AFD(json_data)
         text_box.delete(1.0, tk.END)
         sys.stdout = io.StringIO()
         parser(json_data)  
-        #imprimir_tokens(info_analizada)
+
         output = sys.stdout.getvalue()  
         sys.stdout = sys.__stdout__  
 
@@ -82,7 +79,7 @@ def Reporte_clicked():
     else:
         text_box.insert(tk.END, "selecciona un archivo para analizar primero.\n")
 
-archivo_abierto = None  #el que esta abierto para luego guardar
+archivo_abierto = None  
 #---------------------
 
 #---------------------
