@@ -170,9 +170,9 @@ def exp_a_operar():
             print(valores[0], "+", valores[1], "=", resultado, operador)
             with open(dot_file_name, "a") as dot_file:
 
-                dot_file.write(f'\n    {resultado} [label="{resultado}- Suma"]')
-                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
-                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                dot_file.write(f'\n    {resultado} [label="{resultado}- Suma", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
+                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}", fillcolor="lightblue", style="filled", shape="circle"]')
                 dot_file.write(f'\n    {resultado} -> {valores[0]}')
                 dot_file.write(f'\n    {resultado} -> {valores[1]}')
             print("grafo creado")
@@ -184,9 +184,9 @@ def exp_a_operar():
             print(valores[0], "-", valores[1], "=", resultado, operador)
             with open(dot_file_name, "a") as dot_file:
 
-                dot_file.write(f'\n    {resultado} [label="{resultado}- RESTA"]')
-                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
-                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                dot_file.write(f'\n    {resultado} [label="{resultado}- RESTA", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
+                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}", fillcolor="lightblue", style="filled", shape="circle"]')
                 dot_file.write(f'\n    {resultado} -> {valores[0]}')
                 dot_file.write(f'\n    {resultado} -> {valores[1]}')
             print("grafo creado")
@@ -198,9 +198,9 @@ def exp_a_operar():
             print(valores[0], "*", valores[1], "=", resultado, operador)
             with open(dot_file_name, "a") as dot_file:
 
-                dot_file.write(f'\n    {resultado} [label="{resultado}- multiplicacion"]')
-                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
-                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                dot_file.write(f'\n    {resultado} [label="{resultado}- multiplicacion", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
+                dot_file.write(f'\n    {valores[1]} [label="{valores[1]}", fillcolor="lightblue", style="filled", shape="circle"]')
                 dot_file.write(f'\n    {resultado} -> {valores[0]}')
                 dot_file.write(f'\n    {resultado} -> {valores[1]}')
             print("grafo creado")
@@ -213,9 +213,9 @@ def exp_a_operar():
                     resultado = valores[0] / valores[1]
                     print(valores[0], "/", valores[1], "=", resultado, operador)
                     with open(dot_file_name, "a") as dot_file:
-                        dot_file.write(f'\n    {resultado} [label="{resultado}- division"]')
-                        dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
-                        dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                        dot_file.write(f'\n    {resultado} [label="{resultado}- division", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                        dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
+                        dot_file.write(f'\n    {valores[1]} [label="{valores[1]}", fillcolor="lightblue", style="filled", shape="circle"]')
                         dot_file.write(f'\n    {resultado} -> {valores[0]}')
                         dot_file.write(f'\n    {resultado} -> {valores[1]}')
                     print("grafo creado")
@@ -231,9 +231,9 @@ def exp_a_operar():
                 print(valores[0], "^", valores[1], "=", resultado, operador)
                 with open(dot_file_name, "a") as dot_file:
 
-                    dot_file.write(f'\n    {resultado} [label="{resultado}- potencia"]')
-                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
-                    dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- potencia", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
+                    dot_file.write(f'\n    {valores[1]} [label="{valores[1]}", fillcolor="lightblue", style="filled", shape="circle"]')
                     dot_file.write(f'\n    {resultado} -> {valores[0]}')
                     dot_file.write(f'\n    {resultado} -> {valores[1]}')
                 print("grafo creado")
@@ -248,8 +248,8 @@ def exp_a_operar():
                 print("√", valores[0], "=", resultado, operador)
                 with open(dot_file_name, "a") as dot_file:
 
-                    dot_file.write(f'\n    {resultado} [label="{resultado}- raiz"]')
-                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- raiz", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
                     dot_file.write(f'\n    {resultado} -> {valores[0]}')
                 print("grafo creado")
 
@@ -261,8 +261,8 @@ def exp_a_operar():
                 print("1/", valores[0], "=", resultado, operador)
                 with open(dot_file_name, "a") as dot_file:
 
-                    dot_file.write(f'\n    {resultado} [label="{resultado}- inverso"]')
-                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- inverso", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
                     dot_file.write(f'\n    {resultado} -> {valores[0]}')
                 print("grafo creado")
 
@@ -272,6 +272,11 @@ def exp_a_operar():
             else:
                 resultado = math.sin(valores[0])
                 print("sen(", valores[0], ") =", resultado, operador)
+                with open(dot_file_name, "a") as dot_file:
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- seno", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
+                    dot_file.write(f'\n    {resultado} -> {valores[0]}')
+                print("grafo creado")
 
         elif operador == "coseno":
             if len(valores) != 1:
@@ -281,8 +286,8 @@ def exp_a_operar():
                 print("cos(", valores[0], ") =", resultado, operador)
                 with open(dot_file_name, "a") as dot_file:
 
-                    dot_file.write(f'\n    {resultado} [label="{resultado}- seno"]')
-                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- coseno", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
                     dot_file.write(f'\n    {resultado} -> {valores[0]}')
                 print("grafo creado")
 
@@ -294,8 +299,8 @@ def exp_a_operar():
                 print("tan(", valores[0], ") =", resultado, operador)
                 with open(dot_file_name, "a") as dot_file:
 
-                    dot_file.write(f'\n    {resultado} [label="{resultado}- tangente"]')
-                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- tangente", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
                     dot_file.write(f'\n    {resultado} -> {valores[0]}')
                 print("grafo creado")
 
@@ -307,9 +312,9 @@ def exp_a_operar():
                 print(valores[0], "%", valores[1], "=", resultado, operador)
                 with open(dot_file_name, "a") as dot_file:
 
-                    dot_file.write(f'\n    {resultado} [label="{resultado}- mod"]')
-                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}"]')
-                    dot_file.write(f'\n    {valores[1]} [label="{valores[1]}"]')
+                    dot_file.write(f'\n    {resultado} [label="{resultado}- mod", fillcolor="lightblue", style="filled", shape="ellipse"]')
+                    dot_file.write(f'\n    {valores[0]} [label="{valores[0]}", fillcolor="lightblue", style="filled", shape="circle"]')
+                    dot_file.write(f'\n    {valores[1]} [label="{valores[1]}", fillcolor="lightblue", style="filled", shape="circle"]')
                     dot_file.write(f'\n    {resultado} -> {valores[0]}')
                     dot_file.write(f'\n    {resultado} -> {valores[1]}')
                 print("grafo creado")

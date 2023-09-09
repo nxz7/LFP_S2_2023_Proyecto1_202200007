@@ -3,18 +3,22 @@
         {
             "operacion": "suma",
             "valor1": 10.5,
-            "valor2": 5.32
+            "valor2": 5.5
         },
         {
-            "operacion": "suma",
+            "operacion": "multiplicacion",
             "valor1": 50,
             "valor2": [
                 {
-                    "operacion": "potencia",
-                    "valor1": 10,
+                    "operacion": "mod",
+                    "valor1": 17,
                     "valor2": 3
                 }
             ]
+        },
+        {
+            "operacion": "seno",
+            "valor1": 45
         }
     ],
     "configuraciones": [
@@ -26,4 +30,6 @@
         }
     ]
 }
+
+
 
