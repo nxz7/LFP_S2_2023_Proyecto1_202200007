@@ -6,7 +6,7 @@
             "valor2": 4
         },
         {
-            "operacion": "tangente",#
+            "operacion": "tangente",
             "valor1": 45
         },
         {
@@ -17,7 +17,7 @@
                     "operacion": "division",
                     "valor1": 15,
                     "valor2": 3
-                }#
+                }
             ]
         }
     ],
