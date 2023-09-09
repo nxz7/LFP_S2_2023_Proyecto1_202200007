@@ -1,6 +1,6 @@
 # Lenguajes formales y de Programación
 # Segundo semestre 2023
-# proyecto
+# proyecto 1
 ---
 # Universidad San Carlos de Guatemala
 ## _Programador: Natalia Mariel Calderón Echeverría_
