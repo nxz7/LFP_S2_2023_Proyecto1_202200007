@@ -16,6 +16,8 @@ def Analizar_clicked():
         with open(archivo_abierto, 'r') as json_file:
             json_data = json_file.read()
 
+        json_data = json_data.lower()
+        print(json_data)
         info_analizada = AFD(json_data)
         text_box.delete(1.0, tk.END)
         sys.stdout = io.StringIO()  
@@ -68,6 +70,7 @@ def Reporte_clicked():
 
         with open(archivo_abierto, 'r') as json_file:
             json_data = json_file.read()
+        json_data = json_data.lower()
         text_box.delete(1.0, tk.END)
         sys.stdout = io.StringIO()
         parser(json_data)  

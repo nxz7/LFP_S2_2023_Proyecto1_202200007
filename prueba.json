@@ -1,16 +1,16 @@
 {
-    "Operaciones": [
+    "operAciones": [
         {
             "operacion": "suma",
             "valor1": 10.5,
             "valor2": 5.5
         },
         {
-            "operacion": "multiplicacion",
+            "operacion": "multiPlicacion",
             "valor1": 50,
             "valor2": [
                 {
-                    "operacion": "mod",
+                    "operacion": "mOd",
                     "valor1": 17,
                     "valor2": 3
                 }

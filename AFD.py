@@ -160,7 +160,7 @@ def AFD(st_info):
 def imprimir_tokens(salida):
     print("TOKENS")
     print('*' * 53)
-    print("{:<11} {:<19} {:<10} {:<15}".format("Lexema ", " Tipo", " Fila", "Columna"))
+    print("{:<11} {:<19} {:<10} {:<15}".format("Lexema ", " Token", " Fila", "Columna"))
     print('*' * 53)
     for token in salida[0]:
         print("{:<11} {:<19} {:<10} {:<15}".format(token[0], token[1], token[2], token[3]))

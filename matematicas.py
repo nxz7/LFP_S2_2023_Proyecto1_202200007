@@ -73,7 +73,7 @@ def operaciones():
     try:
 
         vt = tokensL.pop()                     
-        if vt[0] != "Operaciones":            
+        if vt[0] != "operaciones":            
             errores.append([vt[0], "->" + vt[1], vt[2], vt[4]])
             return 
         
@@ -472,7 +472,7 @@ def datos_grafo():
         
 
         vt = tokensL.pop()                   
-        if vt[1] != "Cadena":           
+        if vt[1] != "Cadena" and vt[1] != "Reservada":           
             errores.append([vt[0], "->" + vt[1], vt[2], vt[4]])
             return
         else:
@@ -490,7 +490,9 @@ def datos_grafo():
         datos_grafo()
 
     except Exception as e:
+        print("datos")
         print("Error: " + str(e))
+
 
 
 

@@ -1,26 +1,26 @@
 {
-    "Operaciones": [
-        {
+    "operaciones": [
+        {@
             "operacion": "multiplicacion",
             "valor1": 25,
             "valor2": 4
         },
         {
-            "operacion": "tangente",
+            "operacion": "tanGENTE",
             "valor1": 45
         },
-        {
+        {#
             "operacion": "resta",
             "valor1": 7,
             "valor2": [
                 {
-                    "operacion": "division",
+                    "operacion": "diviSION",
                     "valor1": 15,
                     "valor2": 3
                 }
             ]
         }
-    ],
+    ],?
     "configuraciones": [
         {
             "texto": "Operaciones",
