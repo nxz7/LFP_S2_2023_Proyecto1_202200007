@@ -52,13 +52,13 @@ def AFD(st_info):
 
 
             elif st_info[i] == '"':
-                bolita_estado = 2
+                bolita_estado = 2 #pasa el estado 2, encuentra una string ""
                 columna += 1
 
 
             elif st_info[i].isdigit():
                 paso += st_info[i]
-                bolita_estado = 1
+                bolita_estado = 1 #estado para los digitos
                 columna += 1
 
 
@@ -87,7 +87,7 @@ def AFD(st_info):
                 columna += 1
 
             elif st_info[i] == ".":
-                paso += st_info[i]   #AQUI ES DONDE MIRA SI TIENE PUNTOS
+                paso += st_info[i]   #AQUI ES DONDE MIRA SI TIENE PUNTOS y si si se va al 4
                 bolita_estado = 4
                 columna += 1
 
@@ -98,10 +98,10 @@ def AFD(st_info):
                 i -= 1          
                 bolita_estado = 0
 
-        elif bolita_estado == 4:
+        elif bolita_estado == 4: #digitos con puntoooooooooooooooooooo
             if st_info[i].isdigit():
                 paso += st_info[i]
-                bolita_estado = 5
+                bolita_estado = 5 #se va al 5
                 columna += 1
             
             else:
@@ -122,6 +122,7 @@ def AFD(st_info):
                 i -= 1
                 bolita_estado = 0
 
+#-------------estado de las strings ""
         elif bolita_estado == 2:
             if st_info[i] == '/' or st_info[i] == '\\':
                 columna += 1
@@ -138,7 +139,7 @@ def AFD(st_info):
                     tokens.append([paso, "Cadena", fila, columna])  
                 paso = ""
                 columna += 1
-                bolita_estado = 0
+                bolita_estado = 0 #regresa al 0
 
             elif st_info[i] == "\n":
                 errores.append([paso, fila, columna])

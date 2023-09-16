@@ -1,23 +1,23 @@
 {
     "operAciones": [
         {
-            "operacion": "suma",
+            "operacion": "resta",
             "valor1": 10.5,
             "valor2": 5.5
         },
         {
-            "operacion": "multiPlicacion",
+            "operacion": "division",
             "valor1": 50,
             "valor2": [
                 {
-                    "operacion": "mOd",
-                    "valor1": 17,
+                    "operacion": "MOD",
+                    "valor1": 5,
                     "valor2": 3
                 }
             ]
         },
         {
-            "operacion": "seno",
+            "operacion": "cOseno",
             "valor1": 45
         }
     ],

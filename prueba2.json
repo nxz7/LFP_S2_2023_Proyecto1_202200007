@@ -1,6 +1,6 @@
 {
     "operaciones": [
-        {@
+        {
             "operacion": "multiplicacion",
             "valor1": 25,
             "valor2": 4
@@ -9,18 +9,30 @@
             "operacion": "tanGENTE",
             "valor1": 45
         },
-        {#
+        {
             "operacion": "resta",
             "valor1": 7,
             "valor2": [
                 {
-                    "operacion": "diviSION",
+                    "operacion": "suma",
                     "valor1": 15,
-                    "valor2": 3
+                    "valor2": 5
                 }
             ]
         }
-    ],?
+        ,
+        {
+            "operacion": "suma",
+            "valor1": 10,
+            "valor2": [
+                {
+                    "operacion": "potencia",
+                    "valor1": 2,
+                    "valor2": 3
+                }#
+            ]
+        }
+    ],
     "configuraciones": [
         {
             "texto": "Operaciones",

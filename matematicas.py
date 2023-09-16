@@ -19,7 +19,7 @@ def parser (st_info):
 
 #PILA / POP - > se le da vuelta
     tokensL.reverse()
-
+#aqui es donde se imprime todo
     analisis_L()
     with open(dot_file_name, "a") as dot_file:
         dot_file.write(f'\n    }}')
@@ -36,7 +36,7 @@ def parser (st_info):
         dot_file.write(lines[0])  
 
     print(f"El grafo esta listo bajo el nombre: '{output_file_name}'.")
-
+#-----------------------imprime las configuraciones y lo que analizo  //////// operaciones
 def analisis_L():
 
     try:
@@ -112,7 +112,7 @@ def operacion():
             return
         
         tokensL.pop()        
-
+#recursividad en operacion para que analice todas
         operacion()
 
     except Exception as e:
@@ -325,7 +325,7 @@ def exp_a_operar():
         print("aca2 - expresion")
         print("Error: " + str(e))
         return 0
-
+#la lista de los numeros en la operacion, llama el valor y lo agrega ---------- es recursiva 
 def listanumeros(valores):
 
     try:
